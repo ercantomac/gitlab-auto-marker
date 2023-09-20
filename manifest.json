@@ -1,0 +1,47 @@
+{
+    "manifest_version": 3,
+    "name": "gitlab-auto-marker",
+    "description": "Auto marker for issue checklist items on GitLab",
+    "version": "1.0",
+    "action": {
+        "default_popup": "main.html",
+        "default_icon": {
+            "48": "saul48.png",
+            "128": "saul128.png"
+        }
+    },
+    "icons": {
+        "48": "saul48.png",
+        "128": "saul128.png"
+    },
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "all_frames": true,
+            "js": [
+                "content-script.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "gus1.jpg",
+                "gus2.jpg"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}
