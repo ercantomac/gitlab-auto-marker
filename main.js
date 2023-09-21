@@ -1,4 +1,4 @@
-var autoMarkButton, runningText, buttonImage;
+var autoMarkButton, runningText, buttonImage, title;
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded');
@@ -6,6 +6,15 @@ document.addEventListener('DOMContentLoaded', function () {
     autoMarkButton = document.getElementById("autoMarkButton");
     runningText = document.getElementById("running");
     buttonImage = document.getElementById("buttonImage");
+    title = document.getElementById("title");
+
+    title.style.opacity = "1";
+    title.style.transform = "none";
+    title.style.filter = "none";
+
+    autoMarkButton.style.opacity = "1";
+    autoMarkButton.style.transform = "none";
+    autoMarkButton.style.filter = "none";
 
     autoMarkButton.addEventListener('click', function () {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

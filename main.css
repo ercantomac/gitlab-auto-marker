@@ -7,4 +7,16 @@ body {
 #autoMarkButton {
     background-color: black;
     border: none;
+
+    transition: opacity 1s ease 0.2s, filter 0.8s ease-in-out 0.2s, transform 1s cubic-bezier(0.35, 0.91, 0.33, 0.97) 0.2s;
+    opacity: 0;
+    filter: blur(12px);
+    transform: scale(0.0);
+}
+
+#title {
+    transition: opacity 1s ease, filter 0.8s ease-in-out, transform 1s cubic-bezier(0.35, 0.91, 0.33, 0.97);
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateX(100%);
 }
