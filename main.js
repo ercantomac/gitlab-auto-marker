@@ -1,26 +1,28 @@
-var autoMarkButton, runningText, buttonImage, title;
+var autoMarkButton, message, buttonImage, title;
+var firstClick = true;
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOMContentLoaded');
 
     autoMarkButton = document.getElementById("autoMarkButton");
-    runningText = document.getElementById("running");
+    message = document.getElementById("message");
     buttonImage = document.getElementById("buttonImage");
     title = document.getElementById("title");
 
-    title.style.opacity = "1";
-    title.style.transform = "none";
-    title.style.filter = "none";
-
-    autoMarkButton.style.opacity = "1";
-    autoMarkButton.style.transform = "none";
-    autoMarkButton.style.filter = "none";
+    initialAnimation();
 
     autoMarkButton.addEventListener('click', function () {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" });
         });
-        runningText.style.display = "block";
+
+        message.innerText = "Hacking..."
+        if (firstClick) {
+            message.style.opacity = "1";
+            message.style.fontSize = "1.5em";
+            message.style.filter = "none";
+            firstClick = false;
+        }
         buttonImage.src = "gus1.jpg";
     });
 
@@ -28,9 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
         function (request, sender, sendResponse) {
             if (request.greeting === "finished") {
                 if (request.checkedTasks > 0) {
-                    runningText.innerText = "Hacked " + request.checkedTasks + " items!";
+                    message.innerText = "Hacked " + request.checkedTasks + " items!";
                 } else {
-                    runningText.innerText = "There is nothing to hack!";
+                    message.innerText = "There is nothing to hack!";
                 }
 
                 buttonImage.src = "gus2.jpg";
@@ -38,3 +40,13 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     );
 });
+
+function initialAnimation() {
+    title.style.opacity = "1";
+    title.style.transform = "none";
+    title.style.filter = "none";
+
+    autoMarkButton.style.opacity = "1";
+    autoMarkButton.style.transform = "none";
+    autoMarkButton.style.filter = "none";
+}
